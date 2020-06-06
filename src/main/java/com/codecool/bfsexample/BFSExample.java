@@ -1,11 +1,12 @@
 package com.codecool.bfsexample;
 
+import com.codecool.bfsexample.model.BreadthFirstSearch;
 import com.codecool.bfsexample.model.UserNode;
 import java.util.List;
 
 public class BFSExample {
 
-    private static void populateDB() {
+    private static List<UserNode> populateDB() {
 
         RandomDataGenerator generator = new RandomDataGenerator();
         List<UserNode> users = generator.generate();
@@ -13,9 +14,13 @@ public class BFSExample {
         GraphPlotter graphPlotter = new GraphPlotter(users);
         
         System.out.println("Done!");
+        return users;
     }
 
     public static void main(String[] args) {
-        populateDB();
+        List<UserNode> userNodes = populateDB();
+        BreadthFirstSearch breadthFirstSearch = new BreadthFirstSearch(userNodes);
+        
+        System.out.println(breadthFirstSearch.getDistance(userNodes.get(5),userNodes.get(10)));
     }
 }
