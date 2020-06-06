@@ -21,6 +21,7 @@ public class BFSExample {
         List<UserNode> userNodes = populateDB();
         BreadthFirstSearch breadthFirstSearch = new BreadthFirstSearch(userNodes);
         
-        System.out.println(breadthFirstSearch.getDistance(userNodes.get(1),userNodes.get(3)));
+        System.out.println(breadthFirstSearch.getDistance(userNodes.get(107),userNodes.get(91)));
+        System.out.println(breadthFirstSearch.friendsOfFriends(userNodes.get(10),3));
     }
 }
