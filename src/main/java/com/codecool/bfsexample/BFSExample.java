@@ -19,7 +19,7 @@ public class BFSExample {
 
     public static void main(String[] args) {
         List<UserNode> userNodes = populateDB();
-        BreadthFirstSearch breadthFirstSearch = new BreadthFirstSearch(userNodes);
+        BreadthFirstSearch breadthFirstSearch = new BreadthFirstSearch();
         
         System.out.println(breadthFirstSearch.getDistance(userNodes.get(107),userNodes.get(91)));
         System.out.println(breadthFirstSearch.friendsOfFriends(userNodes.get(10),3));

@@ -4,11 +4,6 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class BreadthFirstSearch {
-    private List<UserNode> users;
-
-    public BreadthFirstSearch(List<UserNode> users) {
-        this.users = users;
-    }
 
     public int getDistance(UserNode start,UserNode end) {
         Queue<UserNode> queue = new LinkedList<>();
@@ -30,24 +25,26 @@ public class BreadthFirstSearch {
         return 0;
     }
     public Set<UserNode> friendsOfFriends(UserNode user,int distance){
-        Set<UserNode> resultList;
+        Queue<UserNode> queue = new LinkedList<>();
+        HashMap<UserNode, Integer> distances = new HashMap<>();
+        Set<UserNode> resultSet = new HashSet<>();
 
-        resultList = user.getFriends();
-        int distanceCounter = 1;
-        while (!(distanceCounter ==distance)) {
-            distanceCounter++;
-            for (UserNode userNode: resultList){
-                System.out.println(userNode);
-                System.out.println("ezen megyünk végig most");
-                for (UserNode friend: userNode.getFriends()) {
-                    if (!resultList.contains(friend)) {
-                        System.out.println(friend);
-                        System.out.println("done");
-                        resultList.add(friend);
-                    }
-                }
+        queue.add(user);
+        distances.put(user,0);
+
+        while (!queue.isEmpty()){
+            UserNode nextFriend = queue.remove();
+            if (distances.get(nextFriend) > distance){
+                resultSet.remove(user);
+                return resultSet;
+            }else {
+                resultSet.add(nextFriend);
+            }
+            for (UserNode friend: nextFriend.getFriends()){
+                queue.add(friend);
+                distances.put(friend,distances.get(nextFriend)+1);
             }
         }
-        return resultList;
+        return null;
     }
 }
